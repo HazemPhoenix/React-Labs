@@ -76,11 +76,15 @@ function UserList() {
   return (
     <>
       <SearchBar filterUsers={filterUsers} />
-      <ul className="w-full md:w-[40vw] mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 p-4">
-        {filteredUsers.map((user) => {
-          return <User user={user} key={user.id} />;
-        })}
-      </ul>
+      {filteredUsers.length > 0 ? (
+        <ul className="w-full md:w-[40vw] mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 p-4">
+          {filteredUsers.map((user) => {
+            return <User user={user} key={user.id} />;
+          })}
+        </ul>
+      ) : (
+        <p className="text-center text-gray-500 text-lg mt-8">No users found</p>
+      )}
     </>
   );
 }
