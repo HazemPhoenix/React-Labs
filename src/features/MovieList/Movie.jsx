@@ -14,7 +14,9 @@ function Movie({ movie }) {
         />
         <h3 className="text-white text-lg font-semibold mb-2">{movie.title}</h3>
         <p className="text-gray-400 text-sm mb-1">{movie.release_date}</p>
-        <p className="text-yellow-400 font-medium">⭐ {movie.vote_average}</p>
+        <p className="text-yellow-400 font-medium">
+          <i class="fa-solid fa-star"></i> {movie.vote_average}
+        </p>
       </div>
     </li>
   );

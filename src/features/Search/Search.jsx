@@ -59,7 +59,7 @@ function Search({ fetchPopularMovies, setMovies, setIsLoading, setError }) {
       <p className="text-gray-300 text-lg">
         Millions of movies, TV shows and people to discover. Explore now!
       </p>
-      <form onSubmit={handleSearch} className="flex gap-3">
+      <form onSubmit={handleSearch} className="flex gap-3 flex-col md:flex-row">
         <input
           type="text"
           onChange={handleSearchTerm}
