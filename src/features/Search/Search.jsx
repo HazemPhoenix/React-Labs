@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
-function Search({ fetchPopularMovies, setMovies, setIsLoading, setError }) {
+function Search({ dispatch, fetchPopularMovies }) {
   const [searchTerm, setSearchTerm] = useState("");
 
   async function fetchMovieByTitle(title) {
     try {
-      setIsLoading(true);
+      dispatch({ type: "setIsLoading", payload: true });
       const url = `https://api.themoviedb.org/3/search/movie?query=${title}&include_adult=false&language=en-US&page=1`;
       const options = {
         method: "GET",
@@ -24,10 +24,10 @@ function Search({ fetchPopularMovies, setMovies, setIsLoading, setError }) {
 
       return m;
     } catch (error) {
-      setError(`Error: ${error.message}`);
+      dispatch({ type: "setError", payload: error.mnessage });
       throw error;
     } finally {
-      setIsLoading(false);
+      dispatch({ type: "setIsLoading", payload: false });
     }
   }
 
@@ -36,10 +36,10 @@ function Search({ fetchPopularMovies, setMovies, setIsLoading, setError }) {
       e.preventDefault();
       if (searchTerm.trim()) {
         const m = await fetchMovieByTitle(searchTerm);
-        setMovies(m);
+        dispatch({ type: "setMovies", payload: m });
       } else {
         const m = await fetchPopularMovies();
-        setMovies(m);
+        dispatch({ type: "setMovies", payload: m });
       }
     } catch (error) {
       console.error(error);
